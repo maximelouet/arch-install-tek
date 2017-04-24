@@ -127,6 +127,11 @@ yaourt -S --noconfirm firefox chromium evince feh ffmpegthumbnailer gnome-calcul
 
 chsh -s /bin/zsh
 
+echo "Configuring X..."
+curl https://github.com/maximelouet/dotfiles/blob/master/etc/X11/xorg.conf.d/00-keyboard.conf > /etc/X11/xorg.conf.d/
+curl https://github.com/maximelouet/dotfiles/blob/master/etc/X11/xorg.conf.d/80-synaptics.conf > /etc/X11/xorg.conf.d/
+
+
 echo "The third and last part is now finished."
 echo "Enjoy :)"
 
