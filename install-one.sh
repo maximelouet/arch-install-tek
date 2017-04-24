@@ -2,7 +2,7 @@
 
 ROOT=/dev/sda9
 HOME=/dev/sda10
-
+MOUNT=/mnt
 
 function prompt() {
   read -p "$1 (Y/n): "
@@ -32,27 +32,27 @@ mkfs.ext4 $HOME
 mkswap /dev/sda5
 
 echo "Mounting partitions..."
-mount $ROOT /mnt
-mkdir -p /mnt/home
-mount $HOME /mnt/home
+mount $ROOT $MOUNT
+mkdir -p $MOUNT/home
+mount $HOME $MOUNT/home
 swapon /dev/sda5
 
 echo "Installing base system..."
-pacstrap /mnt base base-devel
+pacstrap $MOUNT base base-devel
 
 echo "Installing some needed packages..."
-pacstrap /mnt vim git alsa-utils wpa_supplicant dialog networkmanager network-manager-applet
+pacstrap $MOUNT vim git wget alsa-utils wpa_supplicant dialog networkmanager network-manager-applet
 
 echo "Generating fstab..."
-genfstab -U -p /mnt >> /mnt/etc/fstab
+genfstab -U -p $MOUNT >> $MOUNT/etc/fstab
 
-cat /mnt/etc/fstab
+cat $MOUNT/etc/fstab
 echo -e "\nIs this fstab correct ? If you answer 'no', it will be opened with vim."
 if [[ $(prompt "") == "no" ]]; then
-  vim /mnt/etc/fstab
+  vim $MOUNT/etc/fstab
 fi
 
 echo "The first part is now finished."
 echo "Please run the second part of the script with the command 'saumon-two'."
 
-arch-chroot /mnt
+arch-chroot $MOUNT

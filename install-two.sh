@@ -12,11 +12,6 @@ function prompt() {
 echo "Welcome to the Arch install script, by Saumon, part two :)"
 echo "This script MUST be run in the freshly installed Arch system, from the ISO image, via arch-chroot."
 
-if [[ $(hostname) = 'archiso' ]]; then
-  echo "ERROR: this script must be run on the Arch system, not on the ISO. In order to go to the Arch system, run the following command: 'arch-chroot /mnt' "
-  exit 1
-fi
-
 if [[ $(prompt "Start now?") = "no" ]]; then
   echo "Ok :("
   exit 1
@@ -24,24 +19,30 @@ fi
 
 echo "Setting languages..."
 sed -i '/#en_US.UTF-8 UTF-8/c\en_US.UTF-8 UTF-8' /etc/locale.gen
-sed -i '/#fr_FR.UTF-8 UTF-8/c\#fr_FR.UTF-8 UTF-8' /etc/locale.gen
+sed -i '/#fr_FR.UTF-8 UTF-8/c\fr_FR.UTF-8 UTF-8' /etc/locale.gen
 locale-gen
 echo "LANG=en_US.UTF-8" > /etc/locale.conf
 echo "KEYMAP=fr-latin1" > /etc/vconsole.conf
 
 echo "Please choose your hostname :) (no spaces allowed)"
+echo -n "Hostname: "
 read hostname
 echo $hostname > /etc/hostname
-echo "127.0.0.1 $hostname.localdomain $hostname" >> /etc/hosts
+sed '$d' /etc/hosts
+sed '$d' /etc/hosts
+echo "127.0.0.1\t$hostname.localdomain\t$hostname" >> /etc/hosts
+echo '# End of file' >> /etc/hosts
 
 echo "Please choose your Linux user name :) (no spaces allowed)"
+echo -n "Username: "
 read username
+useradd -m $username
 echo "Please set a password for the '$username' user:"
 passwd $username
 
 echo "Giving the '$username' user sudo permissions..."
-echo "$username ALL=(ALL) ALL" > /etc/sudoers
-echo "Defaults insults" > /etc/sudoers
+echo "$username ALL=(ALL) ALL" >> /etc/sudoers
+echo "Defaults insults" >> /etc/sudoers
 
 echo "Please also set a password for the 'root' user:"
 passwd root

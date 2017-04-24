@@ -35,13 +35,13 @@ sudo systemctl enable NetworkManager
 sudo systemctl start NetworkManager
 sudo systemctl stop NetworkManager
 
-echo -n "Please enter your Epitech login:"
+echo -n "Please enter your Epitech login: "
 read tekuser
-echo -n "Please enter your Epitech password:"
+echo -n "Please enter your Epitech password: "
 read -s tekpass
 
-echo "Creating IONIS configuration file for NetworkManager..."
-sudo cat >> /etc/NetworkManager/system-connections/IONIS <<EOF
+echo -e "\nCreating IONIS configuration file for NetworkManager..."
+cat > IONIS.tmp <<EOF
 [connection]
 id=IONIS
 uuid=38d2646a-994a-4139-a644-bebe756577a9
@@ -81,6 +81,8 @@ addr-gen-mode=stable-privacy
 dns-search=
 method=auto"
 EOF
+
+sudo mv IONIS.tmp /etc/NetworkManager/system-connections/IONIS
 
 sudo systemctl start NetworkManager
 echo "Checking Internet connection..."
