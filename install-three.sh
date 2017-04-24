@@ -113,7 +113,7 @@ sudo sed -i '/#Color/c\Color' /etc/pacman.conf
 sudo sed -i '/CheckSpace/c\CheckSpace\nILoveCandy' /etc/pacman.conf
 
 echo "Installing some important packages..."
-yaourt -S --noconfirm valgrind clang exfat-utils funny-manpages openssh the_silver_searcher tree unrar youtube-dl python-pip
+yaourt -S --noconfirm valgrind clang exfat-utils funny-manpages openssh the_silver_searcher tree unrar youtube-dl python-pip neovim
 
 echo "Installing X graphical server..."
 yaourt -S --noconfirm xorg-server xorg-utils xorg-xinit xorg-xrandr xorg-xset xclip xlockmore lxrandr
