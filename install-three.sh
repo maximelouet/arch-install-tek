@@ -91,7 +91,7 @@ wget -q --tries=10 --timeout=30 --spider http://google.com
 if [[ $? -ne 0 ]]; then
   echo "Error: no Internet connection detected."
   sleep 2
-  wifi-menu
+  sudo wifi-menu
   wget -q --tries=10 --timeout=30 --spider http://google.com
   if [[ $? -ne 0 ]]; then
     echo "Error: no Internet connection detected."
@@ -100,27 +100,27 @@ if [[ $? -ne 0 ]]; then
 fi
 
 echo "Installing yaourt..."
-echo -e "\n\n[archlinuxfr]\n\tSigLevel = Never\n\tServer = http://repo.archlinux.fr/\$arch" | sudo tee -a /etc/pacman.conf
+echo -e "\n\n[archlinuxfr]\n\tSigLevel = Never\n\tServer = http://repo.archlinux.fr/\$arch" | sudo tee -a /etc/pacman.conf > /dev/null
 sudo pacman -Syu --noconfirm yaourt
 yaourt -Syua --noconfirm
-sudo sed '$d' /etc/pacman.conf
-sudo sed '$d' /etc/pacman.conf
-sudo sed '$d' /etc/pacman.conf
-sudo sed '$d' /etc/pacman.conf
+sudo sed -n '$d' /etc/pacman.conf
+sudo sed -n '$d' /etc/pacman.conf
+sudo sed -n '$d' /etc/pacman.conf
+sudo sed -n '$d' /etc/pacman.conf
 
 
-sed -i '/#TotalDownload/c\TotalDownload' /etc/pacman.conf
-sed -i '/#Color/c\Color' /etc/pacman.conf
-sed -i '/CheckSpace/c\CheckSpace\nILoveCandy' /etc/pacman.conf
+sudo sed -ni '/#TotalDownload/c\TotalDownload' /etc/pacman.conf
+sudo sed -ni '/#Color/c\Color' /etc/pacman.conf
+sudo sed -ni '/CheckSpace/c\CheckSpace\nILoveCandy' /etc/pacman.conf
 
 echo "Installing some important packages..."
-yaourt -S valgrind clang exfat-utils funny-manpages openssh the_silver_searcher tree unrar wget youtube-dl python-pip
+yaourt -S --noconfirm valgrind clang exfat-utils funny-manpages openssh the_silver_searcher tree unrar youtube-dl python-pip
 
 echo "Installing X graphical server..."
-yaourt -S xorg-server xorg-utils xorg-xinit xorg-xrandr xorg-xset xclip xlockmore lxrandr
+yaourt -S --noconfirm xorg-server xorg-utils xorg-xinit xorg-xrandr xorg-xset xclip xlockmore lxrandr
 
 echo "Installing basic graphical tools..."
-yaourt -S firefox chromium evince feh ffmpegthumbnailer gnome-calculator gparted libreoffice-still lxrandr maim slop termite thunar thunar-archive-plugin ttf-roboto noto-fonts tumbler vlc
+yaourt -S --noconfirm firefox chromium evince feh ffmpegthumbnailer gnome-calculator gparted libreoffice-still lxrandr maim slop termite thunar thunar-archive-plugin ttf-roboto noto-fonts tumbler vlc
 
 echo "The third and last part is now finished."
 echo "Enjoy :)"
