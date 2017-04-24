@@ -119,7 +119,7 @@ echo "Installing X graphical server..."
 yaourt -S --noconfirm xorg-server xorg-utils xorg-xinit xorg-xrandr xorg-xset xclip xlockmore lxrandr
 
 echo "Installing graphical base..."
-yaorut -S --noconfirm lightdm lightdm-gtk-greeter i3
+yaourt -S --noconfirm lightdm lightdm-gtk-greeter i3
 
 echo "Installing basic graphical tools..."
 yaourt -S --noconfirm firefox chromium evince feh ffmpegthumbnailer gnome-calculator gparted libreoffice-still lxrandr maim slop termite thunar thunar-archive-plugin ttf-roboto noto-fonts tumbler vlc
