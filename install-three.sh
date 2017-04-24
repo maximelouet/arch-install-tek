@@ -120,6 +120,7 @@ yaourt -S --noconfirm xorg-server xorg-utils xorg-xinit xorg-xrandr xorg-xset xc
 
 echo "Installing graphical base..."
 yaourt -S --noconfirm lightdm lightdm-gtk-greeter i3
+sudo systemctl enable lightdm
 
 echo "Installing basic graphical tools..."
 yaourt -S --noconfirm firefox chromium evince feh ffmpegthumbnailer gnome-calculator gparted libreoffice-still lxrandr maim slop termite thunar thunar-archive-plugin ttf-roboto noto-fonts tumbler vlc
