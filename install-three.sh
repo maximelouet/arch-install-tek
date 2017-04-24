@@ -103,15 +103,14 @@ echo "Installing yaourt..."
 echo -e "\n\n[archlinuxfr]\n\tSigLevel = Never\n\tServer = http://repo.archlinux.fr/\$arch" | sudo tee -a /etc/pacman.conf > /dev/null
 sudo pacman -Syu --noconfirm yaourt
 yaourt -Syua --noconfirm
-sudo sed -n '$d' /etc/pacman.conf
-sudo sed -n '$d' /etc/pacman.conf
-sudo sed -n '$d' /etc/pacman.conf
-sudo sed -n '$d' /etc/pacman.conf
+sudo sed '$d' /etc/pacman.conf > /etc/pacman.conf
+sudo sed '$d' /etc/pacman.conf > /etc/pacman.conf
+sudo sed '$d' /etc/pacman.conf > /etc/pacman.conf
+sudo sed '$d' /etc/pacman.conf > /etc/pacman.conf
 
-
-sudo sed -ni '/#TotalDownload/c\TotalDownload' /etc/pacman.conf
-sudo sed -ni '/#Color/c\Color' /etc/pacman.conf
-sudo sed -ni '/CheckSpace/c\CheckSpace\nILoveCandy' /etc/pacman.conf
+sudo sed -i '/#TotalDownload/c\TotalDownload' /etc/pacman.conf
+sudo sed -i '/#Color/c\Color' /etc/pacman.conf
+sudo sed -i '/CheckSpace/c\CheckSpace\nILoveCandy' /etc/pacman.conf
 
 echo "Installing some important packages..."
 yaourt -S --noconfirm valgrind clang exfat-utils funny-manpages openssh the_silver_searcher tree unrar youtube-dl python-pip
