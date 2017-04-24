@@ -113,7 +113,7 @@ sudo sed -i '/#Color/c\Color' /etc/pacman.conf
 sudo sed -i '/CheckSpace/c\CheckSpace\nILoveCandy' /etc/pacman.conf
 
 echo "Installing some important packages..."
-yaourt -S --noconfirm valgrind clang exfat-utils funny-manpages openssh the_silver_searcher tree unrar youtube-dl python-pip neovim python-neovim
+yaourt -S --noconfirm zsh valgrind clang exfat-utils funny-manpages openssh the_silver_searcher tree unrar youtube-dl python-pip neovim python-neovim
 
 echo "Installing X graphical server..."
 yaourt -S --noconfirm xorg-server xorg-utils xorg-xinit xorg-xrandr xorg-xset xclip xlockmore lxrandr
@@ -124,6 +124,8 @@ sudo systemctl enable lightdm
 
 echo "Installing basic graphical tools..."
 yaourt -S --noconfirm firefox chromium evince feh ffmpegthumbnailer gnome-calculator gparted libreoffice-still lxrandr maim slop termite thunar thunar-archive-plugin ttf-roboto noto-fonts tumbler vlc
+
+chsh -s /bin/zsh
 
 echo "The third and last part is now finished."
 echo "Enjoy :)"
