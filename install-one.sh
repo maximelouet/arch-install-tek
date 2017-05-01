@@ -38,7 +38,7 @@ WPAConfigSection=(
 	'pairwise=CCMP'
 	'auth_alg=OPEN'
 	'identity="$tekuser"'
-	'password="$tekuser"'
+	'password="$tekpass"'
 	'phase1="peaplabel=auto peapver=0"'
 	'phase2="auth=MSCHAPV2"'
 )
