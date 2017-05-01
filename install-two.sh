@@ -30,7 +30,7 @@ read hostname
 echo $hostname > /etc/hostname
 sed '$d' /etc/hosts > /etc/hosts
 sed '$d' /etc/hosts > /etc/hosts
-echo "127.0.0.1\t$hostname.localdomain\t$hostname" >> /etc/hosts
+echo -e "127.0.0.1\t$hostname.localdomain\t$hostname" >> /etc/hosts
 echo '# End of file' >> /etc/hosts
 
 echo "Please choose your Linux user name :) (no spaces allowed)"
