@@ -44,9 +44,10 @@ WPAConfigSection=(
 )
 EOF
 
-sudo mv IONIS.tmp /etc/netctl/IONIS
+mv IONIS.tmp /etc/netctl/IONIS
 
-sudo systemctl start netctl
+systemctl start netctl
+netctl start IONIS
 
 sleep 1
 
