@@ -46,10 +46,10 @@ EOF
 
 mv IONIS.tmp /etc/netctl/IONIS
 
-systemctl start netctl
-netctl start IONIS
+echo -e "\nPlease select 'IONIS' in the list after pressing enter"
 
-sleep 1
+sleep 2
+wifi-menu
 
 echo "Checking Internet connection..."
 wget -q --tries=5 --timeout=10 --spider http://google.com
