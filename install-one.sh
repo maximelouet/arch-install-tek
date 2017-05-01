@@ -57,6 +57,8 @@ if [[ $? -ne 0 ]]; then
   exit 1
 fi
 
+echo -e "Nice! :)\n"
+
 timedatectl set-ntp true
 
 echo -ne "\nFormat partitions now?"
