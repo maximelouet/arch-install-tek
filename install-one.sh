@@ -15,6 +15,41 @@ function prompt() {
 echo "Welcome to the Arch install script, by Saumon :)"
 echo "IMPORTANT: this script will NOT work if you changed partitions before /dev/sda8"
 
+loadkeys fr
+
+echo -n "Please enter your Epitech login: "
+read tekuser
+echo -n "Please enter your Epitech password: "
+read -s tekpass
+
+echo -e "\nCreating IONIS configuration file for netctl..."
+cat > IONIS.tmp <<EOF
+Description='IONIS Network configuration'
+Interface=wlp2s0
+Connection=wireless
+Security=wpa-configsection
+ESSID=IONIS
+IP=dhcp
+WPAConfigSection=(
+	'ssid="IONIS"'
+	'key_mgmt=WPA-EAP'
+	'eap=PEAP'
+	'proto=RSN'
+	'pairwise=CCMP'
+	'auth_alg=OPEN'
+	'identity="$tekuser"'
+	'password="$tekuser"'
+	'phase1="peaplabel=auto peapver=0"'
+	'phase2="auth=MSCHAPV2"'
+)
+EOF
+
+sudo mv IONIS.tmp /etc/netctl/IONIS
+
+sudo systemctl start netctl
+
+sleep 1
+
 echo "Checking Internet connection..."
 wget -q --tries=5 --timeout=10 --spider http://google.com
 if [[ $? -ne 0 ]]; then
@@ -22,9 +57,13 @@ if [[ $? -ne 0 ]]; then
   exit 1
 fi
 
-loadkeys fr
-
 timedatectl set-ntp true
+
+echo -e "\nFormat partitions now?"
+if [[ $(prompt "") == "no" ]]; then
+  echo "User cancelled operation."
+  exit 1
+fi
 
 echo "Formatting partitions..."
 mkfs.ext4 $ROOT
