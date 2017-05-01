@@ -17,7 +17,7 @@ echo "IMPORTANT: this script will NOT work if you changed partitions before /dev
 
 loadkeys fr
 
-echo -n "Please enter your Epitech login: "
+echo -ne "\nPlease enter your Epitech login: "
 read tekuser
 echo -n "Please enter your Epitech password: "
 read -s tekpass
@@ -59,7 +59,7 @@ fi
 
 timedatectl set-ntp true
 
-echo -e "\nFormat partitions now?"
+echo -ne "\nFormat partitions now?"
 if [[ $(prompt "") == "no" ]]; then
   echo "User cancelled operation."
   exit 1
